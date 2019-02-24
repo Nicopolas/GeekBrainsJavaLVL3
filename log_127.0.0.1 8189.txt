@@ -1,76 +1,20 @@
-11:49:11: Server: Ivan Igorevich connected
 Connection established
-Connection established
-11:49:11: Server: Ivan Igorevich connected
-Connection established
-Connection established
-11:51:25: Server: Ivan Igorevich connected
-11:51:25: Server: Ivan Igorevich connected
-11:51:32: Ivan Igorevich: test
-11:51:32: Ivan Igorevich: test
-11:51:36: Ivan Igorevich: test2
-11:51:36: Ivan Igorevich: test2
-Connection lost
+12:10:01: Server: Ivan Igorevich connected
 Connection lost
 Connection established
+12:10:14: Server: Ivan Igorevich connected
 Connection established
-11:49:11: Server: Ivan Igorevich connected
-Connection established
-Connection established
-11:49:11: Server: Ivan Igorevich connected
-Connection established
-Connection established
-11:51:25: Server: Ivan Igorevich connected
-11:51:25: Server: Ivan Igorevich connected
-11:51:32: Ivan Igorevich: test
-11:51:32: Ivan Igorevich: test
-11:51:36: Ivan Igorevich: test2
-11:51:36: Ivan Igorevich: test2
-Connection lost
+12:11:55: Server: Ivan Igorevich connected
 Connection lost
 Connection established
+12:13:48: Server: Ivan Igorevich connected
 Connection established
-11:51:41: Server: Ivan Igorevich connected
-11:51:41: Server: Ivan Igorevich connected
-Connection established
-Connection established
-11:49:11: Server: Ivan Igorevich connected
-Connection established
-Connection established
-11:49:11: Server: Ivan Igorevich connected
-Connection established
-Connection established
-11:51:25: Server: Ivan Igorevich connected
-11:51:25: Server: Ivan Igorevich connected
-11:51:32: Ivan Igorevich: test
-11:51:32: Ivan Igorevich: test
-11:51:36: Ivan Igorevich: test2
-11:51:36: Ivan Igorevich: test2
-Connection lost
+12:14:16: Server: Ivan Igorevich connected
+12:14:23: Ivan Igorevich: test
 Connection lost
 Connection established
-Connection established
-11:49:11: Server: Ivan Igorevich connected
-Connection established
-Connection established
-11:49:11: Server: Ivan Igorevich connected
-Connection established
-Connection established
-11:51:25: Server: Ivan Igorevich connected
-11:51:25: Server: Ivan Igorevich connected
-11:51:32: Ivan Igorevich: test
-11:51:32: Ivan Igorevich: test
-11:51:36: Ivan Igorevich: test2
-11:51:36: Ivan Igorevich: test2
-Connection lost
+12:14:30: Server: Ivan Igorevich connected
+12:14:37: Ivan Igorevich: test2
 Connection lost
 Connection established
-Connection established
-11:51:41: Server: Ivan Igorevich connected
-11:51:41: Server: Ivan Igorevich connected
-Connection established
-Connection established
-11:52:24: Server: Ivan Igorevich connected
-11:52:24: Server: Ivan Igorevich connected
-Connection lost
-Connection lost
+12:14:52: Server: Ivan Igorevich connected

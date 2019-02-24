@@ -138,7 +138,6 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     private void putLogArea(String msg) {
         if ("".equals(msg)) return;
-        HistoryLogHelper.putLog(msg);
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -210,6 +209,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     @Override
     public void onStartSocketThread(SocketThread thread, Socket socket) {
+        log.setText("");
         putLog("Connection established");
         for (String msg : HistoryLogHelper.getMsgs()) {
             putLogArea(msg);
@@ -221,7 +221,6 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
     @Override
     public void onStopSocketThread(SocketThread thread) {
         putLog("Connection lost");
-        HistoryLogHelper.close();
         userList.setListData(EMPTY);
         setTitle(TITLE);
         panelBottom.setVisible(false);

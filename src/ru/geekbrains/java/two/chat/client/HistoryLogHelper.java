@@ -6,20 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryLogHelper {
-    private static String fileName;
-    private static FileWriter fileWriter;
-    private static FileReader fileReader;
     private static File file;
 
     synchronized static void open(Socket socket) {
-        fileName = ("log_" + socket.getInetAddress() + " " + socket.getPort() + ".txt").replace("/","");
-        file = new File(fileName);
-/*        try {
-            fileWriter = new FileWriter(fileName);
-            fileReader = new FileReader(fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        file = new File(("log_" + socket.getInetAddress() + " " + socket.getPort() + ".txt").replace("/",""));
     }
 
     synchronized static List<String> getMsgs() {
@@ -27,8 +17,10 @@ public class HistoryLogHelper {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String str;
-            while ((str = reader.readLine()) != null) {
+            int i = 0;
+            while (((str = reader.readLine()) != null) && i < 100) {
                 list.add(str);
+                i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -40,18 +32,8 @@ public class HistoryLogHelper {
     synchronized static void putLog(String msg) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.write(msg + "\n");
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    synchronized static void close() {
-/*        try {
-            fileReader.close();
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 }
