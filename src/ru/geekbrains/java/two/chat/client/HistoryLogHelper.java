@@ -9,11 +9,15 @@ public class HistoryLogHelper {
     private static File file;
 
     synchronized static void open(Socket socket) {
-        file = new File(("log_" + socket.getInetAddress() + " " + socket.getPort() + ".txt").replace("/",""));
+        file = new File(("log_" + socket.getInetAddress() + " " + socket.getPort() + ".txt").replace("/", ""));
     }
 
     synchronized static List<String> getMsgs() {
         List<String> list = new ArrayList<>();
+        if (file == null) {
+            System.err.println("Err file don't open");
+            return list;
+        }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String str;
@@ -30,6 +34,10 @@ public class HistoryLogHelper {
     }
 
     synchronized static void putLog(String msg) {
+        if (file == null) {
+            System.err.println("Err file don't open");
+            return;
+        }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.write(msg + "\n");
         } catch (IOException e) {

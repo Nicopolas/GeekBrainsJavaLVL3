@@ -192,7 +192,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
                 break;
             case Messages.USER_LIST:
                 String users = value.substring(Messages.USER_LIST.length() +
-                                                Messages.DELIMITER.length());
+                        Messages.DELIMITER.length());
                 String[] userArray = users.split(Messages.DELIMITER);
                 Arrays.sort(userArray);
                 userList.setListData(userArray);
@@ -205,7 +205,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     /**
      * SocketThreadListener methods
-     * */
+     */
 
     @Override
     public void onStartSocketThread(SocketThread thread, Socket socket) {
