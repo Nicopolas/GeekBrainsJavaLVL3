@@ -11,8 +11,14 @@ import java.net.Socket;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class ChatServer implements ServerSocketThreadListener, SocketThreadListener {
+/*
+1. Создать три потока, каждый из которых выводит определенную букву (A, B и C) 5 раз (порядок – ABСABСABС). Используйте wait/notify/notifyAll.
+2. На серверной стороне сетевого чата реализовать управление потоками через ExecutorService.
+*/
+public class ChatServer implements ServerSocketThreadListener, SocketThreadListener, ExecutorServiceInterface {
 
     private ServerSocketThread serverSocketThread;
     private final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss: ");
@@ -21,11 +27,20 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
 
     public ChatServer(ChatServerListener listener) {
         this.listener = listener;
+        ExecutorServiceRun();
+    }
+
+    public void ExecutorServiceRun() {
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+        for (String str : LetterTerminal.StringEnum.getAll()) {
+            executorService.execute(new LetterTerminal(str, this));
+        }
+        executorService.shutdown();
     }
 
     /**
      * ChatServer actions
-     * */
+     */
 
     public void start(int port) {
         if (serverSocketThread != null && serverSocketThread.isAlive())
@@ -59,7 +74,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
 
     /**
      * ServerSocket Thread listener implementation
-     * */
+     */
 
     @Override
     public void onServerThreadStart(ServerSocketThread thread) {
@@ -98,7 +113,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
 
     /**
      * SocketThread listener methods
-     * */
+     */
 
     @Override
     public synchronized void onStartSocketThread(SocketThread thread, Socket socket) {
@@ -111,7 +126,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
         clients.remove(thread);
         if (client.isAuthorized() && !client.isReconnecting()) {
             sendToAuthorizedClients(Messages.getTypeBroadcast(
-                            "Server", client.getNickname() + " disconnected"));
+                    "Server", client.getNickname() + " disconnected"));
             sendToAuthorizedClients(Messages.getUserList(getUsers()));
         }
     }
