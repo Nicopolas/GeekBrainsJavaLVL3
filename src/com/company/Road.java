@@ -17,6 +17,9 @@ public class Road extends Stage {
 
 
             if (isFinalStage) {
+                if (CARS_FINISHED == 0) {
+                    System.out.println(c.getName() + " -  WIN!!!");
+                }
                 synchronized (lock) {
                     CARS_FINISHED++;
                     while (CARS_FINISHED != race.getCARS_COUNT()) {
