@@ -1,11 +1,9 @@
 package com.company;
 
 public class Car implements Runnable {
-    private static int CARS_COUNT;
-
-    static {
-        CARS_COUNT = 0;
-    }
+    private static final Object lock = new Object();
+    private static int CARS_READY = 0;
+    private static int CARS_COUNT = 0;
 
     private Race race;
     private int speed;
@@ -29,9 +27,17 @@ public class Car implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println(this.name + " готовится");
-            Thread.sleep(500 + (int) (Math.random() * 800));
-            System.out.println(this.name + " готов");
+            synchronized (lock) {
+                System.out.println(this.name + " готовится");
+                Thread.sleep(500 + (int) (Math.random() * 800));
+                System.out.println(this.name + " готов");
+                CARS_READY++;
+                while (CARS_READY != CARS_COUNT) {
+                    lock.wait();
+                }
+                race.setAllCarsIsReady(true);
+                lock.notifyAll();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
