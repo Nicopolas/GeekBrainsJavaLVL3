@@ -27,11 +27,12 @@ public class Car implements Runnable {
     @Override
     public void run() {
         try {
+            System.out.println(this.name + " готовится");
+            Thread.sleep(500 + (int) (Math.random() * 800));
+            System.out.println(this.name + " готов");
+            CARS_READY++;
+
             synchronized (lock) {
-                System.out.println(this.name + " готовится");
-                Thread.sleep(500 + (int) (Math.random() * 800));
-                System.out.println(this.name + " готов");
-                CARS_READY++;
                 while (CARS_READY != CARS_COUNT) {
                     lock.wait();
                 }
